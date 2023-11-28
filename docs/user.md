@@ -8,9 +8,9 @@ Request Body :
 
 ```json
 {
-  "username": "username",
-  "password": "123123",
-  "name": "name"
+  "email" : "example@gmail.com",
+  "username" : "username",
+  "password" : "password",
 }
 ```
 
@@ -18,7 +18,7 @@ Response Body (Success) :
 
 ```json
 {
-  "data": {
+  "data" : {
     "message": "Create user success"
   }
 }
@@ -28,7 +28,7 @@ Response Body (Failed, 400) :
 
 ```json
 {
-  "errors": {
+  "errors" : {
     "message": "username already taken, user not found, ...???"
   }
 }
@@ -42,8 +42,8 @@ Request Body :
 
 ```json
 {
-  "username": "username",
-  "password": "123123"
+  "username" : "username",
+  "password" : "123123"
 }
 ```
 
@@ -51,8 +51,8 @@ Response Body (Success) :
 
 ```json
 {
-  "data": {
-    "token": "token"
+  "data" : {
+    "token" : "token"
   }
 }
 ```
@@ -61,8 +61,8 @@ Response Body (Failed, 400) :
 
 ```json
 {
-  "errors": {
-    "message": "user not found, ...???"
+  "errors" : {
+    "message" : "user not found, ...???"
   }
 }
 ```
@@ -79,10 +79,10 @@ Response Body (Success) :
 
 ```json
 {
-  "data": {
-    "id": "String UUID",
-    "username": "username",
-    "name": "name"
+  "data" : {
+    "id" : "String UUID",
+    "username" : "username",
+    "name" : "name"
   }
 }
 ```
@@ -91,8 +91,8 @@ Response Body (Failed, 401) :
 
 ```json
 {
-  "errors": {
-    "message": "unauthorize"
+  "errors" : {
+    "message" : "unauthorize"
   }
 }
 ```
