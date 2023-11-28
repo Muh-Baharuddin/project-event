@@ -1,8 +1,8 @@
 # User Api Spec
 
-## Register User
+## Register
 
-Endpoint : POST /api/auth/users/
+Endpoint : POST /api/auth/register/
 
 Request Body :
 
@@ -30,6 +30,39 @@ Response Body (Failed, 400) :
 {
   "errors": {
     "message": "username already taken, user not found, ...???"
+  }
+}
+```
+
+## Login
+
+Endpoint : POST /api/auth/login/
+
+Request Body :
+
+```json
+{
+  "username": "username",
+  "password": "123123"
+}
+```
+
+Response Body (Success) :
+
+```json
+{
+  "data": {
+    "token": "token"
+  }
+}
+```
+
+Response Body (Failed, 400) :
+
+```json
+{
+  "errors": {
+    "message": "user not found, ...???"
   }
 }
 ```
