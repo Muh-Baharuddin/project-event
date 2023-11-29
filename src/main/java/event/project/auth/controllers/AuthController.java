@@ -1,6 +1,8 @@
 package event.project.auth.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import event.project.auth.services.AuthService;
+import event.project.users.dto.UserDto;
 import event.project.users.models.User;
 import jakarta.validation.Valid;
 
@@ -19,13 +22,19 @@ public class AuthController {
   private AuthService authService;
 
   @PostMapping("/register")
-  public User registerUser(@Valid @RequestBody User user, Errors errors) {
+  public ResponseEntity<UserDto<User>> registerUser(@Valid @RequestBody User user, Errors errors) {
+    UserDto<User> userDto = new UserDto<>();
+
     if (errors.hasErrors()) {
       for (ObjectError error : errors.getAllErrors()) {
-        System.err.println(error);
+        userDto.getMessages().add(error.getDefaultMessage());
       }
-      throw new RuntimeException("Validation Error");
+      userDto.setStatus(false);
+      userDto.setPayload(null);
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(userDto);
     }
-    return authService.register(user);
+    userDto.setStatus(true);
+    userDto.setPayload(authService.register(user));
+    return ResponseEntity.ok(userDto);
   } 
 }
