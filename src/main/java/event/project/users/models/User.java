@@ -1,5 +1,8 @@
 package event.project.users.models;
 
+import java.io.Serializable;
+
+import event.project.person.models.Person;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import lombok.Data;
@@ -7,7 +10,7 @@ import lombok.Data;
 @Entity
 @Data
 @Table(name = "users")
-public class User {
+public class User implements Serializable{
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private String id;
@@ -21,4 +24,7 @@ public class User {
 
   @NotEmpty(message = "password is required")
   private String password;
+
+  @OneToOne
+  private Person person;
 }
